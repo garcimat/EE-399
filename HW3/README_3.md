@@ -101,7 +101,7 @@ Next, we evaluated the performance of the SVM model on the same digit pairs. For
 
 Finally, we evaluated the decision tree classifier's performance on the same digit pairs. For digits 4 and 9, the model achieved an accuracy of 0.934, while for digits 2 and 9, the accuracy was 0.977. For all 10 digits, the decision tree classifier achieved an accuracy of 0.870, which is lower than the accuracy achieved by both the LDA and SVM models. A table with all the data can be seen below.
 
-#### Figure 5. Table with Accuracy Data with Different Digits
+#### Figure 5. Table with Accuracy Data for Different Digits
 
 <img width="641" alt="image" src="https://user-images.githubusercontent.com/122642082/234201175-4f3ed56f-4a11-43c6-8f79-a3375023cbbb.png">
 
