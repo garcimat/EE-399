@@ -71,30 +71,49 @@ We begin by importing the necessary libraries and creating an instance of the de
 
 ### Singular Value Spectrum Plot:
 
+#### Figure 1. Plot of SVP
+
 <img width="535" alt="image" src="https://user-images.githubusercontent.com/122642082/234198209-b4f49464-22d4-4859-b027-6d46fbc45edf.png">
 
 ### Interpretations of U, S, and V Matrices:
+
+#### Figure 2. Interpretations of Matrix Parameters
 
 <img width="612" alt="image" src="https://user-images.githubusercontent.com/122642082/234198325-4e514fdd-c21a-431d-9405-bcb40324672d.png">
 
 ### Plots of First 4 Principal Components:
 
+#### Figure 3. Visualization of First Principal Components
+
 <img width="691" alt="image" src="https://user-images.githubusercontent.com/122642082/234198491-1bbe7f1b-94ea-4dfd-8be5-b74b467f8866.png">
 
 ### 3D Plot of Projected Data (on 2, 3, 5):
 
+#### Figure 4. Plot of Projected Data
+
 <img width="377" alt="image" src="https://user-images.githubusercontent.com/122642082/234198660-15ffd257-93f3-4840-9523-1a340d931938.png">
 
-### Table of Accuracy Values for Digits:
+### Accuracy Values for Digits:
+
+First, for the LDA model, we achieved high accuracy for most digit pairs. For digits 1 and 4, the model achieved an accuracy of 0.99. For digits 1, 3, and 8, the accuracy was perfect at 1.0. For digits 4 and 9, the model achieved an accuracy of 0.96, while for digits 2 and 9, the accuracy was 0.99. However, for all 10 digits, the LDA model achieved an accuracy of 0.868, indicating that it struggled with classifying some of the more challenging digit pairs.
+
+Next, we evaluated the performance of the SVM model on the same digit pairs. For digits 4 and 9, the SVM model achieved an accuracy of 0.984, while for digits 2 and 9, the accuracy was 0.983. When classifying all 10 digits, the SVM model achieved an overall accuracy of 0.976, which is higher than the accuracy achieved by the LDA model.
+
+Finally, we evaluated the decision tree classifier's performance on the same digit pairs. For digits 4 and 9, the model achieved an accuracy of 0.934, while for digits 2 and 9, the accuracy was 0.977. For all 10 digits, the decision tree classifier achieved an accuracy of 0.870, which is lower than the accuracy achieved by both the LDA and SVM models. A table with all the data can be seen below.
+
+#### Figure 5. Table with Accuracy Data with Different Digits
 
 <img width="641" alt="image" src="https://user-images.githubusercontent.com/122642082/234201175-4f3ed56f-4a11-43c6-8f79-a3375023cbbb.png">
 
 
 ## Sec. V. Summary and Conclusions
 
-In this project, we explored various machine learning algorithms for classifying handwritten digits from the MNIST dataset. We started by doing some exploratory data analysis, which involved visualizing the dataset and performing dimensionality reduction using PCA. We then implemented linear discriminant analysis, support vector machines, and decision tree classifiers to classify digits 2 and 9, as well as digits 3, 5, and 8.
+In this project, we analyzed the MNIST dataset containing images of handwritten digits and tested three different classifiers - LDA, SVM, and Decision Tree Classifier - to see which algorithm can classify the data most accurately.
 
-We found that the LDA and SVM classifiers were able to achieve high accuracy on all tasks, while the decision tree classifier performed well but was slightly less accurate. Additionally, we found that the SVM classifier was the most accurate overall, with the best accuracy on the task of classifying digits 2 and 9.
+We started by performing SVD analysis of the digit images to understand the rank of the digit space, and then built linear classifiers for two digits that were easiest and hardest to separate. We then built a Support Vector Machine and a Decision Tree Classifier to classify all ten digits.
 
-Overall, this project demonstrates the effectiveness of machine learning algorithms for classifying handwritten digits and highlights the importance of selecting the appropriate algorithm for the task at hand. Future work could involve exploring more advanced algorithms, such as deep neural networks, for this task.
+We found that SVM performed the best in classifying all ten digits, with an overall accuracy of 0.976. LDA also performed well, achieving an accuracy of 1 when classifying digits 1, 3, and 8. However, the DTC performed poorly in classifying all ten digits, with an overall accuracy of 0.870.
 
+Based on our results, we can conclude that SVM is the best classifier for the MNIST dataset, achieving the highest overall accuracy. However, LDA can also be a good choice for certain digit classification tasks. The poor performance of DTC in classifying all ten digits suggests that it may not be the best algorithm to use for this type of image classification problem.
+
+In conclusion, our findings suggest that SVM is the most suitable algorithm for classifying handwritten digits in the MNIST dataset, and it can be used for various image recognition applications.
