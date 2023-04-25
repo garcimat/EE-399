@@ -69,6 +69,25 @@ We begin by importing the necessary libraries and creating an instance of the de
 
 ## Sec. IV. Computational Results
 
+### Singular Value Spectrum Plot:
+
+<img width="535" alt="image" src="https://user-images.githubusercontent.com/122642082/234198209-b4f49464-22d4-4859-b027-6d46fbc45edf.png">
+
+### Interpretations of U, S, and V Matrices:
+
+<img width="612" alt="image" src="https://user-images.githubusercontent.com/122642082/234198325-4e514fdd-c21a-431d-9405-bcb40324672d.png">
+
+### Plots of First 4 Principal Components:
+
+<img width="691" alt="image" src="https://user-images.githubusercontent.com/122642082/234198491-1bbe7f1b-94ea-4dfd-8be5-b74b467f8866.png">
+
+### 3D Plot of Projected Data (on 2, 3, 5):
+
+<img width="377" alt="image" src="https://user-images.githubusercontent.com/122642082/234198660-15ffd257-93f3-4840-9523-1a340d931938.png">
+
+### Table of Accuracy Values for Digits:
+
+<img width="641" alt="image" src="https://user-images.githubusercontent.com/122642082/234201175-4f3ed56f-4a11-43c6-8f79-a3375023cbbb.png">
 
 
 ## Sec. V. Summary and Conclusions
