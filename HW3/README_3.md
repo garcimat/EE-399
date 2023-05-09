@@ -1,117 +1,120 @@
-# EE399 HW #4
-
-Title: Comparison of Machine Learning Algorithms: Neural Networks, SVM, Decision Tree, and LSTM on MNIST Data Set
+# EE399 HW #3
 
 Author: Mathew Garcia-Medina
 
 ## Abstract:
 
-This report presents a comparison of four machine learning algorithms on the MNIST data set: feedforward neural networks, support vector machines (SVM), decision trees, and long short-term memory (LSTM). The MNIST data set is a collection of 70,000 images of handwritten digits, each of size 28x28 pixels. The goal is to correctly classify each image into one of ten classes (corresponding to the digits 0 through 9).
+In this project, we analyze the MNIST dataset, a large collection of handwritten digits, to explore the effectiveness of machine learning algorithms in classifying this data. We begin by performing exploratory data analysis and dimensionality reduction using PCA to gain insights into the dataset's characteristics. We then implement linear discriminant analysis (LDA), support vector machines (SVM), and decision tree classifiers to classify two sets of digits: those that are easiest to separate and those that are hardest to separate. We compare the accuracy and training time of each algorithm to determine which is the most effective in classifying the data.
 
-In this report, we first compute the first 20 principal component analysis (PCA) modes of the digit images and plot them. We then implement a feedforward neural network to classify the digits and compare its performance to the other three algorithms.
-
-The results show that the neural network and LSTM outperformed the SVM and decision tree classifiers. The neural network achieved an accuracy of 97% on the test data set, while SVM achieved an accuracy of 97.92%, decision tree achieved an accuracy of 87.79%, and LSTM achieved an accuracy of 98.59%.
-
-Overall, this report demonstrates the effectiveness of neural networks and LSTM on the MNIST data set and provides a comparison of different machine learning algorithms for this task.
+Our results show that all three classifiers perform well in classifying the digits, with SVM being the most accurate overall. However, the LDA and decision tree classifiers were also effective in separating the digits, with high accuracy rates and relatively short training times. These findings highlight the importance of selecting the appropriate algorithm for the task at hand and demonstrate the potential of machine learning in analyzing and classifying large datasets such as MNIST.
 
 ## Sec. I. Introduction and Overview
 
-The MNIST data set is a well-known benchmark for testing machine learning algorithms. It consists of 70,000 images of handwritten digits, each of size 28x28 pixels. The task is to classify each image into one of ten classes (corresponding to the digits 0 through 9). The MNIST data set has been widely used for testing and comparing different machine learning algorithms, and it has become a standard reference in the field.
+The MNIST dataset is a widely used benchmark in machine learning, consisting of 60,000 training images and 10,000 test images of handwritten digits. The goal of this project is to analyze the MNIST dataset and implement several classification algorithms to determine which is most effective in classifying the data.
 
-In this report, we compare four different machine learning algorithms for classifying the MNIST data set: feedforward neural networks, support vector machines (SVM), decision trees, and long short-term memory (LSTM). First, we compute the first 20 principal component analysis (PCA) modes of the digit images and plot them. We then implement a feedforward neural network to classify the digits and compare its performance to the other three algorithms.
+In this report, we explore the effectiveness of linear discriminant analysis (LDA), support vector machines (SVM), and decision tree classifiers in classifying two sets of digits from the MNIST dataset: those that are easiest to separate (digits 2 and 9) and those that are hardest to separate (digits 4 and 9). We compare the accuracy and training time of each algorithm to determine which is the most effective in classifying the data.
 
-The report is organized as follows. In Section II, we provide a brief overview of the theoretical background of the algorithms used in this study. In Section III, we describe the algorithm implementation and development. In Section IV, we present the computational results of the study. Finally, we summarize the results and draw conclusions in Section V.
+In Section II, we provide an overview of the theoretical background and concepts relevant to our analysis, including dimensionality reduction, LDA, SVM, and decision tree classifiers. In Section III, we describe the implementation and development of our algorithms and discuss the hyperparameters used for each algorithm. In Section IV, we present the computational results, including the accuracy rates and training times for each algorithm. Finally, in Section V, we summarize our findings and discuss the implications of our results.
+
+Overall, this project aims to provide a comprehensive analysis of the MNIST dataset and demonstrate the potential of machine learning algorithms in analyzing and classifying large datasets.
 
 ## Sec. II. Theoretical Background
 
-In this section, we will provide a brief overview of the theoretical concepts and techniques that underlie the algorithms used in this report.
+The MNIST dataset consists of 28x28 grayscale images of handwritten digits, with each image represented as a vector of 784 dimensions. Due to the high dimensionality of the dataset, it is often necessary to perform dimensionality reduction to reduce computational complexity and improve accuracy.
 
-A. Linear Regression
-Linear regression is a supervised learning algorithm used for predicting a continuous outcome variable based on one or more predictor variables. In the case of simple linear regression, there is only one predictor variable, while in multiple linear regression, there are two or more. The algorithm works by minimizing the sum of the squared errors between the predicted values and the actual values of the outcome variable.
+Linear discriminant analysis (LDA) is a technique used for dimensionality reduction and classification. LDA finds a linear combination of features that maximizes the separation between classes while minimizing the variance within each class. This can be used to project high-dimensional data onto a lower-dimensional subspace while preserving the discriminatory information between classes.
 
-B. Neural Networks
-Neural networks are a class of machine learning algorithms that are inspired by the structure and function of the human brain. They are composed of interconnected nodes, or neurons, that perform computations on input data. Neural networks are used for a variety of tasks, including classification, regression, and clustering. In this report, we use feedforward neural networks for image classification.
+Support vector machines (SVM) are a popular supervised learning method used for classification and regression analysis. SVM finds the optimal hyperplane that separates the data into different classes. SVM can be used for both linearly separable and non-linearly separable data by mapping the data into a higher-dimensional space using kernel functions.
 
-C. Principal Component Analysis
-Principal component analysis (PCA) is a technique used to reduce the dimensionality of a dataset. It works by identifying the principal components, or the directions in which the data varies the most. PCA is commonly used in image processing to reduce the dimensionality of image data while preserving as much of the variance as possible.
+Decision tree classifiers are a type of supervised learning method used for classification and regression analysis. Decision trees are constructed by recursively splitting the data into smaller subsets based on the values of the features. The goal is to create a tree that minimizes the impurity of the subsets at each node, resulting in a hierarchy of if-then rules that can be used for classification.
 
-D. Support Vector Machines
-Support vector machines (SVMs) are a class of supervised learning algorithms used for classification and regression analysis. SVMs work by finding the hyperplane that maximally separates the data into different classes. The hyperplane is chosen such that it maximizes the margin, or the distance between the hyperplane and the closest data points from each class.
-
-E. Decision Trees
-Decision trees are a type of supervised learning algorithm used for classification and regression analysis. They work by recursively partitioning the data into subsets based on the values of the predictor variables until each subset only contains data from one class. Decision trees are commonly used in data mining and machine learning due to their interpretability and ability to handle both categorical and continuous data.
+In this project, we will use LDA, SVM, and decision tree classifiers to classify two sets of digits from the MNIST dataset: digits 2 and 9, which are easiest to separate, and digits 4 and 9, which are hardest to separate. By comparing the performance of each algorithm in terms of accuracy and training time, we aim to determine which algorithm is most effective in classifying the data.
 
 ## Sec. III. Algorithm Implementation and Development
 
-In this section, we describe the algorithm implementations for the three tasks: fitting polynomials to data, PCA for MNIST image data, and classification of MNIST digits using a feed-forward neural network, LSTM, SVM, and decision tree classifiers.
+### Data Preprocessing
 
-Fitting Polynomials to Data
-For the polynomial fitting task, we used the NumPy and Scikit-learn libraries in Python. We first loaded the data into a Pandas dataframe, and then separated it into training and test sets using the train_test_split function from Scikit-learn. We then used the training set to fit a line, parabola, and 19th degree polynomial to the data using NumPy's polyfit function. We computed the least-square error for each model over the training set and used the test set to compute the least-square error of each model. The code snippet below shows how we fit the 19th degree polynomial to the training data:
+The MNIST dataset consists of 28 x 28 grayscale images of handwritten digits. Before applying any machine learning algorithms, the images need to be preprocessed to extract useful features and convert them into a format that can be fed into the algorithms. In this project, we will be using two digits, 1 and 8, to test the performance of LDA, SVM, and decision tree classifiers.
 
-<img width="780" alt="image" src="https://user-images.githubusercontent.com/122642082/237041747-42b1a3ae-9e65-4796-b043-68118319a73d.png">
+We begin by loading the necessary libraries and the MNIST dataset.
 
-PCA for MNIST Image Data
-For the PCA analysis on MNIST image data, we used the Scikit-learn library in Python. We loaded the MNIST data using Scikit-learn's fetch_openml function and then scaled the data to have zero mean and unit variance using the StandardScaler function. We then used Scikit-learn's PCA function to compute the first 20 principal components of the data. The code snippet below shows how we performed the PCA analysis:
+<img width="532" alt="image" src="https://user-images.githubusercontent.com/122642082/234194473-9b613c09-076d-4d94-b035-bf2e8a33f975.png">
 
-<img width="489" alt="image" src="https://user-images.githubusercontent.com/122642082/237042218-3adcde51-ca8b-45a2-98a7-faf65ab48c04.png">
+Next, we extract the images and labels of the two digits we are interested in and split the dataset into training and testing sets. i.e., 1 and 4.
 
-Classification of MNIST Digits
-For the classification task, we used the Scikit-learn and Keras libraries in Python. We loaded the MNIST data using Scikit-learn's fetch_openml function and then split the data into training and test sets using the train_test_split function. We then used Scikit-learn's SVM and decision tree classifiers to classify the data. For the feed-forward neural network and LSTM models, we used Keras to define and train the models.
+<img width="691" alt="image" src="https://user-images.githubusercontent.com/122642082/234194758-acc34f38-6564-4a6e-92da-ee4fd0dc8df3.png">
 
-SVM Classifier
-The SVM classifier was implemented using Scikit-learn's SVC class. The code snippet below shows how we trained the SVM classifier:
+### Linear Discriminant Analysis (LDA)
 
-<img width="489" alt="image" src="https://user-images.githubusercontent.com/122642082/237043579-733adf38-d1f0-4535-9b6f-e560d6011995.png">
+LDA is a linear classification algorithm that tries to find the linear combination of features that best separates the classes. It does this by maximizing the ratio of between-class variance to within-class variance.
 
-Finally, the accuracy of the trained SVM classifier on the test set was evaluated and printed.
+We begin by importing the necessary libraries and creating an instance of the LDA model. Next, we fit the model to the training data and transform the data into the LDA space. We can now train a classifier on the transformed data and evaluate its performance on the test set.
 
-For the decision tree classifier, we used Scikit-learn's DecisionTreeClassifier class. We trained the decision tree classifier on the training set and evaluated its accuracy on the test set using the following code snippet:
+<img width="335" alt="image" src="https://user-images.githubusercontent.com/122642082/234195299-7596547b-6d19-43ec-a42e-5da3d0b52b47.png">
 
-<img width="489" alt="image" src="https://user-images.githubusercontent.com/122642082/237043890-94cc3122-3b79-4e1d-b170-36721e6a7f02.png">
+### Support Vector Machine (SVM)
 
-In this code, we defined a decision tree classifier with a random state of 42, trained it on the training set, and evaluated its accuracy on the test set. The accuracy of the decision tree classifier on the test set was then printed.
+SVM is a powerful classification algorithm that works by finding the hyperplane that best separates the classes. It can handle high-dimensional data and is effective even when the number of features is greater than the number of samples.
 
-For the LSTM, we used Keras to build and train the model. The code snippet below shows how we defined and trained the model:
+We begin by importing the necessary libraries and creating an instance of the SVM model. Next, we fit the model to the training data and evaluate its performance on the test set.
 
-<img width="712" alt="image" src="https://user-images.githubusercontent.com/122642082/237044828-b61050fd-f56f-40e3-a3b4-c1c25e4bc3b8.png">
+<img width="684" alt="image" src="https://user-images.githubusercontent.com/122642082/234195756-54ebb748-5cc1-47fe-ad6c-786bf95645af.png">
 
-For the feed-forward neural network, we used PyTorch to build and train the model. The code snippet below shows how we defined and trained the model:
+### Decision Tree Classifier
 
-<img width="597" alt="image" src="https://user-images.githubusercontent.com/122642082/237045096-855c224a-4105-4518-af4b-02ccb68ec3f8.png">
+Decision trees are a popular classification algorithm that work by recursively splitting the data based on the features that best separate the classes. They are easy to interpret and can handle both categorical and numerical data.
+
+We begin by importing the necessary libraries and creating an instance of the decision tree classifier.
+
+<img width="690" alt="image" src="https://user-images.githubusercontent.com/122642082/234196008-807ea13c-223c-49ec-a922-6644f33e4568.png">
 
 ## Sec. IV. Computational Results
 
-In this section, we present the computational results obtained from implementing the feedforward neural network, LSTM, SVM, and decision tree classifiers on the MNIST dataset.
+### Singular Value Spectrum Plot:
 
-Below are plots of the first 20 PCA components from the MNIST dataset:
+#### Figure 1. Plot of SVP
 
-### Figure 1. Plots of First 20 PCA Components from MNIST Dataset
-<img width="627" alt="image" src="https://user-images.githubusercontent.com/122642082/237047014-b81304cd-d8d0-47f3-a2ce-2208b6aecf42.png">
+<img width="535" alt="image" src="https://user-images.githubusercontent.com/122642082/234198209-b4f49464-22d4-4859-b027-6d46fbc45edf.png">
 
-For the feedforward neural network, we achieved an accuracy of 97% on the test set. The code snippet above shows how we trained and tested the neural network and the code snippet below shows the results:
+### Interpretations of U, S, and V Matrices:
 
-<img width="589" alt="image" src="https://user-images.githubusercontent.com/122642082/237045444-ee74ad3b-a285-4bfb-ac2d-34633cb9bf1d.png">
+#### Figure 2. Interpretations of Matrix Parameters
 
-For the LSTM classifier, we achieved an accuracy of 98.59% on the test set. The code snippet below shows the results:
+<img width="612" alt="image" src="https://user-images.githubusercontent.com/122642082/234198325-4e514fdd-c21a-431d-9405-bcb40324672d.png">
 
-<img width="1130" alt="image" src="https://user-images.githubusercontent.com/122642082/237046080-6dfe6947-11cc-4473-9220-6dfd8549d3f4.png">
+### Plots of First 4 Principal Components:
 
-For the SVM classifier, we achieved an accuracy of 97.92% on the test set. The code snippet below shows the results:
+#### Figure 3. Visualization of First Principal Components
 
-<img width="271" alt="image" src="https://user-images.githubusercontent.com/122642082/237046245-4e0de17f-b120-4cfc-9939-d64db6a1893c.png">
+<img width="691" alt="image" src="https://user-images.githubusercontent.com/122642082/234198491-1bbe7f1b-94ea-4dfd-8be5-b74b467f8866.png">
 
-For the decision tree classifier, we achieved an accuracy of 87.79% on the test set. The code snippet below shows the results:
+### 3D Plot of Projected Data (on 2, 3, 5):
 
-<img width="271" alt="image" src="https://user-images.githubusercontent.com/122642082/237046331-ad007dda-6ac7-4bb8-b474-3c12cab0aa32.png">
+#### Figure 4. Plot of Projected Data
 
-In summary, we achieved an accuracy of 97% with the feed-forward neural network, 97.92% with the SVM classifier, 87.79% with the decision tree classifier, and 98.59% with the LSTM classifier on the MNIST dataset.
+<img width="377" alt="image" src="https://user-images.githubusercontent.com/122642082/234198660-15ffd257-93f3-4840-9523-1a340d931938.png">
+
+### Accuracy Values for Digits:
+
+First, for the LDA model, we achieved high accuracy for most digit pairs. For digits 1 and 4, the model achieved an accuracy of 0.99. For digits 1, 3, and 8, the accuracy was perfect at 1.0. For digits 4 and 9, the model achieved an accuracy of 0.96, while for digits 2 and 9, the accuracy was 0.99. However, for all 10 digits, the LDA model achieved an accuracy of 0.868, indicating that it struggled with classifying some of the more challenging digit pairs.
+
+Next, we evaluated the performance of the SVM model on the same digit pairs. For digits 4 and 9, the SVM model achieved an accuracy of 0.984, while for digits 2 and 9, the accuracy was 0.983. When classifying all 10 digits, the SVM model achieved an overall accuracy of 0.976, which is higher than the accuracy achieved by the LDA model.
+
+Finally, we evaluated the decision tree classifier's performance on the same digit pairs. For digits 4 and 9, the model achieved an accuracy of 0.934, while for digits 2 and 9, the accuracy was 0.977. For all 10 digits, the decision tree classifier achieved an accuracy of 0.870, which is lower than the accuracy achieved by both the LDA and SVM models. A table with all the data can be seen below.
+
+#### Figure 5. Table with Accuracy Data for Different Digits
+
+<img width="641" alt="image" src="https://user-images.githubusercontent.com/122642082/234201175-4f3ed56f-4a11-43c6-8f79-a3375023cbbb.png">
+
 
 ## Sec. V. Summary and Conclusions
 
-In this project, we implemented and compared several machine learning algorithms for classification of the MNIST handwritten digits dataset.
+In this project, we analyzed the MNIST dataset containing images of handwritten digits and tested three different classifiers - LDA, SVM, and Decision Tree Classifier - to see which algorithm can classify the data most accurately.
 
-In the first part of the project, we applied principal component analysis (PCA) to reduce the dimensionality of the dataset and visualize the first 20 PCA modes of the digit images. We then trained a feed-forward neural network on the MNIST data set and achieved an accuracy of 97% on the test set.
+We started by performing SVD analysis of the digit images to understand the rank of the digit space, and then built linear classifiers for two digits that were easiest and hardest to separate. We then built a Support Vector Machine and a Decision Tree Classifier to classify all ten digits.
 
-In the second part, we compared the performance of the neural network against three other classifiers: SVM, decision tree, and LSTM. The SVM classifier achieved an accuracy of 97.92%, the decision tree achieved an accuracy of 87.79%, and the LSTM achieved an accuracy of 98.59%. These results show that the LSTM classifier performed the best on this dataset, followed closely by the neural network and SVM classifiers.
+We found that SVM performed the best in classifying all ten digits, with an overall accuracy of 0.976. LDA also performed well, achieving an accuracy of 1 when classifying digits 1, 3, and 8. However, the DTC performed poorly in classifying all ten digits, with an overall accuracy of 0.870.
 
-Overall, this project demonstrates the effectiveness of machine learning algorithms for classification tasks, particularly for handwritten digit recognition. Future work could involve exploring more advanced neural network architectures or using other dimensionality reduction techniques in combination with machine learning algorithms.
+Based on our results, we can conclude that SVM is the best classifier for the MNIST dataset, achieving the highest overall accuracy. However, LDA can also be a good choice for certain digit classification tasks. The poor performance of DTC in classifying all ten digits suggests that it may not be the best algorithm to use for this type of image classification problem.
+
+In conclusion, our findings suggest that SVM is the most suitable algorithm for classifying handwritten digits in the MNIST dataset, and it can be used for various image recognition applications.
