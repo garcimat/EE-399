@@ -1,5 +1,7 @@
 # EE399 HW #4
+
 Title: Comparison of Machine Learning Algorithms: Neural Networks, SVM, Decision Tree, and LSTM on MNIST Data Set
+
 Author: Mathew Garcia-Medina
 
 ## Abstract:
