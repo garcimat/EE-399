@@ -96,7 +96,7 @@ For the LSTM classifier, we achieved an accuracy of 98.59% on the test set. The 
 
 <img width="1130" alt="image" src="https://user-images.githubusercontent.com/122642082/237046080-6dfe6947-11cc-4473-9220-6dfd8549d3f4.png">
 
-For the SVM classifier, we achieved an accuracy of 97.92% on the test set. The code snippet below shows how we trained and tested the SVM classifier:
+For the SVM classifier, we achieved an accuracy of 97.92% on the test set. The code snippet below shows the results:
 
 <img width="271" alt="image" src="https://user-images.githubusercontent.com/122642082/237046245-4e0de17f-b120-4cfc-9939-d64db6a1893c.png">
 
