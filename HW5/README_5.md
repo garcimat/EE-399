@@ -133,7 +133,7 @@ We first examine the results obtained using the feed-forward neural network. Aft
 The plots showcases the predicted and true trajectories of the Lorenz system, allowing us to visually assess the accuracy of the feed-forward neural network.
 
 2. LSTM Network Results:
-Next, we examine the results obtained using the LSTM network. Similarly, we evaluate the trained LSTM model on the testing dataset and visualize the predicted and true trajectories. Here is an example code snippet for the evaluation process:
+Next, we examine the results obtained using the LSTM network. Similarly, we evaluate the trained LSTM model on the testing dataset and visualize the predicted and true trajectories. After plotting the true vs predicted values with different ρ values, these were the results:
 
 #### Figure 6. True vs Predicted Values for ρ = 10
 
@@ -158,7 +158,7 @@ Next, we examine the results obtained using the LSTM network. Similarly, we eval
 The plot allows us to compare the predicted and true trajectories, providing insights into the LSTM network's ability to capture the dynamics of the Lorenz system.
 
 3. RNN Network Results:
-We now examine the results obtained using the RNN network. Similarly to the LSTM network, we evaluate the trained RNN model on the testing dataset and visualize the predicted and true trajectories. Here is an example code snippet for the evaluation process:
+We now examine the results obtained using the RNN network. Similarly to the LSTM network, we evaluate the trained RNN model on the testing dataset and visualize the predicted and true trajectories. After plotting the true vs predicted values with different ρ values, these were the results:
 
 #### Figure 11. True vs Predicted Values for ρ = 10
 
@@ -185,31 +185,41 @@ The plot visualizes the predicted and true trajectories of the Lorenz system usi
 4. Echo State Network Results:
 Unfortunately, the results obtained using the Echo State network were inconclusive due to errors in the code. Although the network was trained and the predicted trajectories were obtained, the evaluation process encountered issues that affected the accuracy of the results. Therefore, it was not possible to visualize the predicted and true trajectories of the Lorenz system using the Echo State network as intended.
 
-The computational results demonstrate the performance of the feed-forward neural network, LSTM network, RNN network, and Echo State network in advancing the solution of the Lorenz equations. By evaluating their predicted trajectories and visually comparing them with the true trajectories, we gain insights into the ability of these models to capture the complex dynamics of the Lorenz system. In the next section, we summarize the findings and draw conclusions from our study.
+5. Created Neural Network Results:
+We finally examine the results obtained using a neural network created from part one of the homework. Similarly to the LSTM network, we evaluate the trained NN model on the testing dataset and visualize the predicted and true trajectories. After plotting the true vs predicted values with different ρ values, these were the results:
+
+#### Figure 16. True vs Predicted Values for ρ = 10
+
+<img width="761" alt="image" src="https://github.com/garcimat/EE-399/assets/122642082/1a041098-3350-499d-a950-a5738bd74bdf">
+
+#### Figure 17. True vs Predicted Values for ρ = 28
+
+<img width="752" alt="image" src="https://github.com/garcimat/EE-399/assets/122642082/02bdd31b-cbdc-4f47-8cbc-14abb9cc759c">
+
+#### Figure 18. True vs Predicted Values for ρ = 40
+
+<img width="752" alt="image" src="https://github.com/garcimat/EE-399/assets/122642082/827e1625-40f1-481e-a7ba-b9d55deca0ff">
+
+#### Figure 19. True vs Predicted Values for ρ = 17
+
+<img width="752" alt="image" src="https://github.com/garcimat/EE-399/assets/122642082/61d94156-176e-4e0d-9aa7-bad92a61d83b">
+
+#### Figure 20. True vs Predicted Values for ρ = 35
+
+<img width="752" alt="image" src="https://github.com/garcimat/EE-399/assets/122642082/c52a2117-772d-4b68-bc08-2dec7cef2cee">
+
+The computational results demonstrate the performance of the feed-forward neural network, LSTM network, RNN network, created NN, and Echo State network in advancing the solution of the Lorenz equations. By evaluating their predicted trajectories and visually comparing them with the true trajectories, we gain insights into the ability of these models to capture the complex dynamics of the Lorenz system. In the next section, we summarize the findings and draw conclusions from our study.
 
 ## Sec. V. Summary and Conclusions
 
-In this study, we explored the application of neural network models, specifically feed-forward neural networks, LSTM networks, Recurrent neural networks, and Echo State networks, to advance the solution of the Lorenz equations. By training these models on simulated data and evaluating their performance on testing datasets, we gained insights into their ability to capture the complex dynamics of the Lorenz system.
+In this study, we investigated the application of neural network models for advancing the solution of the Lorenz equations. Specifically, we examined the performance of the neural network architectures: the custom-designed neural network (NN), the feed-forward neural network (FFNN), the recurrent neural network (RNN), and the Long Short-Term Memory (LSTM) network. Additionally, we attempted to utilize the Echo State network (ESN), but due to complications with the code, the results were inconclusive.
 
-Through our computational results, we observed the following key findings:
+Based on our computational results, we found that the custom-designed neural network (NN) outperformed the other models in capturing the dynamics of the Lorenz system. It exhibited the highest accuracy in predicting the trajectories of the system. The NN leveraged its flexibility and adaptability to learn the complex nonlinear relationships inherent in the Lorenz equations.
 
-Feed-Forward Neural Network:
+The feed-forward neural network (FFNN) performed the second best among the evaluated models. Although it lacks the recurrent connections of the RNN and LSTM, the FFNN demonstrated its capability to capture the system's behavior to a significant extent. The FFNN's architecture allowed it to map the input data to accurate predictions of the Lorenz system's future states.
 
-The feed-forward neural network demonstrated promising performance in predicting the trajectories of the Lorenz system.
-The model successfully captured the nonlinear dynamics of the system and exhibited accurate predictions.
-Evaluation metrics such as mean squared error (MSE), mean absolute error (MAE), and coefficient of determination (R-squared) provided quantitative measures of the model's accuracy.
-LSTM Network:
+The recurrent neural network (RNN) and Long Short-Term Memory (LSTM) network also showed promise in advancing the solution of the Lorenz equations. These models exhibited the ability to capture temporal dependencies and model the evolving dynamics of the system. While their performance was slightly lower compared to the custom-designed neural network and the FFNN, the RNN and LSTM networks still provided valuable insights into the complex behavior of the Lorenz system.
 
-The LSTM network showcased excellent performance in capturing the temporal dependencies and long-term dynamics of the Lorenz system.
-The model's recurrent nature allowed it to effectively model the system's memory and accurately predict future states.
-Evaluation metrics confirmed the LSTM network's superior predictive capabilities compared to the feed-forward neural network.
-Echo State Network:
+Unfortunately, the Echo State network (ESN) could not be conclusively evaluated due to complications with the code. Therefore, its performance in advancing the solution of the Lorenz equations remains uncertain.
 
-The Echo State network demonstrated its suitability for modeling nonlinear dynamical systems like the Lorenz system.
-The reservoir of randomly connected recurrent nodes effectively captured the system's dynamics.
-The model exhibited competitive performance, although slightly less accurate compared to the LSTM network.
-Overall, our findings highlight the efficacy of neural network models in advancing the solution of the Lorenz equations. The LSTM network, with its ability to capture temporal dependencies, outperformed the feed-forward neural network and Echo State network in accurately predicting the future states of the Lorenz system. However, both the feed-forward neural network and Echo State network showed promising results and could be viable alternatives depending on the specific requirements of the application.
-
-This study contributes to the understanding of neural network-based approaches for modeling and predicting complex dynamical systems. The ability to accurately forecast the future states of systems like the Lorenz system has implications in various fields, including weather forecasting, climate modeling, and financial prediction.
-
-In conclusion, the application of neural network models to advance the solution of the Lorenz equations offers a powerful tool for understanding and predicting the behavior of chaotic systems. Further research can explore additional variations of neural network architectures, optimization techniques, and training methodologies to improve the accuracy and efficiency of the models.
+In conclusion, our study demonstrates the effectiveness of neural network models in capturing and predicting the dynamics of the Lorenz system. The custom-designed neural network (NN) showcased the highest accuracy, followed by the feed-forward neural network (FFNN), the recurrent neural network (RNN), and the Long Short-Term Memory (LSTM) network. These models offer valuable tools for studying and understanding chaotic systems. Future research can focus on optimizing the Echo State network (ESN) implementation to assess its performance in this context. Overall, the application of neural networks to complex dynamic systems holds great potential for various scientific and engineering domains.
