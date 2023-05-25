@@ -1,34 +1,99 @@
-# EE399 HW #5
+# EE399 HW #6
 
-Title: Advancing the Solution of the Lorenz Equations using Neural Networks
+Title: Analysis of SHRED Model Performance on SST Data: A Study on Time Lag and Sensor Variability
 
 Author: Mathew Garcia-Medina
 
 ## Abstract:
 
-The Lorenz equations are a set of nonlinear differential equations that exhibit chaotic behavior. In this study, we explore the application of neural networks to advance the solution of the Lorenz equations from time t to t + ∆t. We consider different values of the parameter rho (ρ) to examine the neural network's performance under varying system dynamics.
+This report presents an analysis of the performance of the SHRED (SHallow REcurrent Decoder) model applied to sea-surface temperature (SST) data. The study focuses on two factors that may impact the model's performance: time lag and sensor variability. The SHRED model combines a recurrent layer (LSTM) with a shallow decoder network (SDN) to reconstruct high-dimensional spatio-temporal fields from a trajectory of sensor measurements.
 
-In this work, we employ four types of neural networks: a feed-forward neural network, a Long Short-Term Memory (LSTM) network, a Recurrent Neural Network (RNN), and an Echo State network. Each network is trained using PyTorch to learn the underlying dynamics of the Lorenz system and predict the system's state at a future time step.
+In this analysis, we investigate the impact of different time lags on the SHRED model's performance. Additionally, we explore how the number of sensors used in the model affects its reconstruction accuracy. The NOAA Optimum Interpolation SST V2 dataset is employed for the experiments, and the performance is evaluated using mean squared error (MSE) as the metric.
 
-The theoretical background of the Lorenz equations and the neural network architectures are discussed in Sections II and III, respectively. We present the algorithm implementation details and the development process in Section III. In Section IV, we provide computational results, including the accuracy and efficiency of the neural network models in advancing the solution of the Lorenz equations. Finally, in Section V, we summarize the findings, draw conclusions, and discuss potential future directions for this research.
+The report presents the theoretical background of the SHRED model and the algorithm implementation. It describes the process of preprocessing the data, generating input sequences, and creating the training, validation, and test datasets. The training procedure and hyperparameters of the SHRED model are also discussed.
 
-This study contributes to the field of computational physics by demonstrating the effectiveness of neural networks in solving and predicting complex dynamical systems such as the Lorenz equations. The results highlight the potential of neural networks as powerful tools for understanding and simulating chaotic systems.
+The computational results section presents the findings of the analysis. Performance as a function of time lag and sensor variability is examined, and the corresponding mean squared errors are reported. The results provide insights into the optimal choice of time lag and the impact of sensor variability on the model's performance.
 
-Keywords: Lorenz equations, neural networks, chaotic systems, recurrent neural network, feed-forward neural network, LSTM network, Echo State network.
+In summary, this report provides a comprehensive analysis of the SHRED model's performance on SST data, considering the influence of time lag and sensor variability. The findings contribute to a better understanding of the model's capabilities and can guide the selection of suitable parameters for future applications in spatio-temporal data reconstruction.
 
 ## Sec. I. Introduction and Overview
 
-The Lorenz equations, first introduced by Edward Lorenz in 1963, have become an iconic example of a dynamical system exhibiting chaotic behavior. These equations describe the evolution of a three-dimensional system and have been widely studied in various scientific disciplines, including physics, mathematics, and meteorology. The chaotic nature of the Lorenz equations arises from their sensitivity to initial conditions, making long-term predictions challenging.
+The SHRED (SHallow REcurrent Decoder) model is a network architecture designed for reconstructing high-dimensional spatio-temporal fields from a trajectory of sensor measurements. This section provides a theoretical background on the SHRED model, introducing the key components and underlying principles.
 
-In recent years, there has been a growing interest in leveraging machine learning techniques, specifically neural networks, to model and predict the behavior of complex dynamical systems. Neural networks have shown remarkable capabilities in capturing nonlinear relationships and extracting patterns from data. This has led researchers to explore their potential for advancing the solution of chaotic systems like the Lorenz equations.
+The SHRED architecture combines a recurrent layer, specifically the Long Short-Term Memory (LSTM) network, with a shallow decoder network (SDN). The LSTM network is well-suited for modeling sequential data and capturing temporal dependencies. It consists of memory cells and gates that control the flow of information, allowing the network to retain long-term dependencies.
 
-The objective of this study is to investigate the effectiveness of different neural network architectures in advancing the solution of the Lorenz equations from time t to t + ∆t. We consider four types of neural networks: feed-forward neural network, Long Short-Term Memory (LSTM) network, Recurrent neural network, and Echo State network. These networks are trained using PyTorch, a popular deep learning framework, to learn the underlying dynamics of the Lorenz system and predict its future states.
+The SDN serves as the decoder part of the SHRED model, responsible for reconstructing the high-dimensional spatio-temporal fields. It is a feed-forward network composed of fully connected layers. The SDN takes the output of the LSTM network as input and transforms it to generate the reconstructed field.
 
-In this section, we provide an overview of the research objectives and outline the structure of this report. We then discuss the motivation behind employing neural networks for solving chaotic systems and highlight the potential advantages and challenges associated with this approach. Furthermore, we introduce the specific neural network architectures used in this study and explain their relevance to the problem at hand.
+Formally, the SHRED architecture can be expressed as follows:
+�
+(
+{
+�
+�
+}
+�
+=
+�
+−
+�
+�
+)
+=
+�
+(
+�
+(
+{
+�
+�
+}
+�
+=
+�
+−
+�
+�
+)
+;
+�
+�
+�
+)
+;
+�
+�
+�
+)
+H({y 
+i
+​
+ } 
+i=t−k
+t
+​
+ )=F(G({y 
+i
+​
+ } 
+i=t−k
+t
+​
+ );W 
+RN
+​
+ );W 
+SD
+​
+ )
+where $\mathcal F$ is the SDN parameterized by weights $W_{SD}$, $\mathcal G$ is the LSTM network parameterized by weights $W_{RN}$, and ${ y_i } _{i=t-k}^t$ represents a trajectory of sensor measurements of a high-dimensional spatio-temporal field.
 
-The subsequent sections of this report delve into the theoretical background of the Lorenz equations (Sec. II), the details of the algorithm implementation and development (Sec. III), the computational results obtained from applying the neural networks to the Lorenz system (Sec. IV), and finally, a summary of the findings and conclusions drawn from the study (Sec. V).
+To apply the SHRED model to SST data, the input sequences are generated by selecting a trajectory of sensor measurements over a given time lag. The sensor locations are randomly chosen, and the number of sensors can be varied to analyze its impact on the model's performance.
 
-Through this research, we aim to contribute to the field of computational physics by evaluating the performance of neural networks in advancing the solution of chaotic systems like the Lorenz equations. By examining different neural network architectures, we seek to gain insights into their capabilities, limitations, and potential for modeling and predicting complex dynamical systems.
+The training of the SHRED model involves optimizing the network parameters to minimize a suitable loss function, typically mean squared error (MSE), between the reconstructed field and the ground truth. The training is performed using a training dataset, and the model's performance is evaluated on validation and test datasets.
+
+The SHRED model offers the advantage of combining the temporal modeling capabilities of the LSTM network with the flexibility and expressiveness of the SDN. This architecture enables the reconstruction of complex spatio-temporal fields from incomplete and noisy sensor measurements.
+
+In summary, the SHRED model provides a powerful framework for spatio-temporal data reconstruction. By leveraging the LSTM network and SDN, it can capture temporal dependencies and generate accurate reconstructions of high-dimensional fields. The next section will delve into the implementation and development of the SHRED model for SST data analysis.
 
 ## Sec. II. Theoretical Background
 
